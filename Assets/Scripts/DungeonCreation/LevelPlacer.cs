@@ -33,6 +33,7 @@ public class LevelPlacer : MonoBehaviour
     public void PlaceThings(HashSet<Vector2Int> innerTiles, List<Vector2Int> endPositions, int tileSize)
     {
         List<Vector2Int> innerTileList = new List<Vector2Int>(innerTiles);
+        Vector2 playerposition = new Vector3(tileSize / 2f, tileSize / 2f);
 
         for (int i = 0; i < _numberOfEnemies; i++)
         {
@@ -40,8 +41,9 @@ public class LevelPlacer : MonoBehaviour
             bool taken = true;
             int index;
 
-            while (taken)
+            while (taken || (newPosition - playerposition).magnitude < 6)
             {
+                taken = true;
                 index = Random.Range(0, innerTileList.Count - 1);
                 if (_placesTaken.Contains(index) == false)
                 {
@@ -53,20 +55,6 @@ public class LevelPlacer : MonoBehaviour
             GameObject fodder = Instantiate(_fodderPrototypes[Random.Range(0, _fodderPrototypes.Count)]);
             fodder.GetComponent<IEnemy>().AddDeathDelegate(DeathDelegate);
             fodder.transform.position = new Vector3(newPosition.x, newPosition.y, 0);
-        }
-
-        Vector2Int playerposition = Vector2Int.zero;
-        bool takenSpot = true;
-        int indexToTake;
-
-        while (takenSpot)
-        {
-            indexToTake = Random.Range(0, innerTileList.Count - 1);
-            if (_placesTaken.Contains(indexToTake) == false)
-            {
-                takenSpot = false;
-                playerposition = innerTileList[indexToTake];
-            }
         }
 
         // set gate and player positions

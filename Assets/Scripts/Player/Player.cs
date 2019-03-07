@@ -110,20 +110,8 @@ public class Player : MonoBehaviour, IDamager
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
-        {
-            if (_health <= 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
 
-            _health--;
-        }
-    }
-
-    public void TakeDamage(int amountOfDamage)
+    public void TakeDamage(int amountOfDamage, Vector2 bulletDirection)
     {
         HealthChange(-amountOfDamage);
     }

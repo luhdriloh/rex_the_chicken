@@ -160,6 +160,11 @@ public class Inventory : MonoBehaviour
 
     private void ThrowWeapon()
     {
+        if (_itemList[_itemInUseIndex] ==  null)
+        {
+            return;
+        }
+
         _itemList[_itemInUseIndex].transform.parent = null;
         _itemList[_itemInUseIndex].GetComponent<PlayerWeapon>().SetAsInventory(false);
 

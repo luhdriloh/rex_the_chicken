@@ -182,7 +182,7 @@ MonoBehaviour:
     type: 2}
   _firepointGameObject: {fileID: 1566713099453336}
   _shooterStats: {fileID: 11400000, guid: d1bc9c3022c6549dd8565917a380f996, type: 2}
-  _projectilesToCreate: 2
+  _projectilesToCreate: 3
   _playerWeaponEquivalentProto: {fileID: 1364159120187364, guid: 9c292bc564b2a4b7eb7601c44c43b85b,
     type: 2}
   _bulletSoundFX: {fileID: 8300000, guid: 991312a1af7604328bc9d19d82dd2ea4, type: 3}

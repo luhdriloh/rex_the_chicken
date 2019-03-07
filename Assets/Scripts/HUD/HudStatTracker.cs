@@ -23,8 +23,8 @@ public class HudStatTracker : MonoBehaviour
     }
 
 
-    private void HandleAmmoChange(int currentMagazine, int ammoLeft)
+    private void HandleAmmoChange(int ammoLeft)
     {
-        _ammoLeft.text = "Ammo    " + currentMagazine + " / " + ammoLeft;
+        _ammoLeft.text = "Ammo    " + ammoLeft;
     }
 }

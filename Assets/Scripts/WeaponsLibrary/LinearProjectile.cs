@@ -151,7 +151,7 @@ namespace ActionGameFramework.Projectiles
             // if it is not mapedge than we get the damager interface
             if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") || collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                collision.GetComponent<IDamager>().TakeDamage(_weaponDamage);
+                collision.GetComponent<IDamager>().TakeDamage(_weaponDamage, _rigidbody.velocity);
             }
 
             _returnToPool(this);

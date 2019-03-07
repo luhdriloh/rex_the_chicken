@@ -62,7 +62,7 @@ public class ThrowItemScript : MonoBehaviour
         // if it is not mapedge than we get the damager interface
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            collision.gameObject.GetComponent<IDamager>().TakeDamage(2);
+            collision.gameObject.GetComponent<IDamager>().TakeDamage(2, _rigidbody.velocity);
         }
     }
 }

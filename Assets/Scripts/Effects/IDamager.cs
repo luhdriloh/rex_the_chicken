@@ -1,4 +1,6 @@
-﻿public interface IDamager
+﻿using UnityEngine;
+
+public interface IDamager
 {
-    void TakeDamage(int amountOfDamage);
+    void TakeDamage(int amountOfDamage, Vector2 bulletDirection);
 }

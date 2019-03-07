@@ -35,9 +35,10 @@ public class ChaserEnemyAI : MonoBehaviour, IDamager, IEnemy
     }
 
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount, Vector2 bulletDirection)
     {
         _health -= damageAmount;
+        _rigidbody.MovePosition(transform.position + (Vector3)(bulletDirection.normalized * .2f));
 
         if (_health <= 0)
         {

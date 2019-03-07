@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public delegate void AmmoChangeHandler(int currentMagazineAmmo, int ammoLeft);
+
+public delegate void AmmoChangeHandler(int ammoLeft);
+
 
 public enum WeaponType
 { 
@@ -17,26 +20,21 @@ public class PlayerWeapon : Shooter, IItem
     public bool _pickup;
     public float _startScale;
 
+    public SpriteRenderer _muzzleFlash;
+    public int _muzzleFlashFrames;
+
     private int _ammoLeft;
-    private int _ammoInMagazine;
-    private bool _reloading;
     private bool _setRecoil;
-    private float _reloadStartTime;
-    private AudioSource _audioSource;
     private RecoilScript _recoil;
 
     protected override void Start()
     {
         base.Start();
 
-        // start with half your max ammo
-        _ammoLeft = _shooterStats._ammoCapacity / 2;
-        _ammoInMagazine = _shooterStats._magazineSize;
-        _reloading = false;
+        // start with some ammo
+        _ammoLeft = (int)Random.Range(_shooterStats._ammoCapacity * .1f, _shooterStats._ammoCapacity * .25f);
         _pickup = true;
 
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = _bulletSoundFX;
         _recoil = GetComponent<RecoilScript>();
         OnAmmoChangeEvent();
     }
@@ -78,79 +76,36 @@ public class PlayerWeapon : Shooter, IItem
         // fire weapon
         if ((Input.GetMouseButtonDown(0) && _currentTimeBetweenShotFired >= _tapFireDelay || Input.GetMouseButton(0) && _currentTimeBetweenShotFired >= _fireDelay))
         {
-            if (_ammoInMagazine > 0)
+            if (_ammoLeft > 0)
             {
-                if (_reloading == true)
-                {
-                    _reloading = false;
-                }
-
                 Fire(angle);
             }
-            else
-            {
-                Reload();
-            }
-        }
-
-
-        // reload
-        if (Input.GetKeyDown(KeyCode.R) || _reloading == true)
-        {
-            Reload();
         }
     }
 
 
     private void Fire(float angle)
     {
-        _audioSource.PlayOneShot(_bulletSoundFX);
+        AudioEffects._audioEffects.PlaySoundEffect(_bulletSoundFX);
         _recoil.AddRecoil(transform.right);
         CameraFunctions._cameraFunctions.AddRecoil(transform.right);
         FireWeapon(angle);
-        _ammoInMagazine--;
+        StartCoroutine("EmitMuzzleFlash");
+        _ammoLeft--;
         OnAmmoChangeEvent();
     }
 
-
-    private void Reload()
+    private IEnumerator EmitMuzzleFlash()
     {
-        // check that we have less than mag capacity in our current mag and that we have bullets left
-        if (_ammoInMagazine >= _shooterStats._magazineSize || _ammoLeft <= 0)
+        _muzzleFlash.enabled = true;
+
+        for (int i = 0; i < _muzzleFlashFrames; i++)
         {
-            return;
+            yield return 0;
         }
 
-        if (_reloading == false)
-        {
-            _reloading = true;
-            _reloadStartTime = Time.time;
-        }
-        else if (_reloading == true)
-        {
-            float timeSinceReloadStart = Time.time - _reloadStartTime;
-            if (timeSinceReloadStart >= _shooterStats._reloadTime)
-            {
-                // check that we have ammo left
-                int ammoToAdd = _shooterStats._usesMagazine ? Mathf.Min(_ammoLeft, _shooterStats._magazineSize - _ammoInMagazine) :  Mathf.Min(_ammoLeft, 1);
-                _ammoLeft -= ammoToAdd;
-                _ammoInMagazine += ammoToAdd;
-
-                // check if we have full ammo or out of ammo
-                if (_ammoInMagazine >= _shooterStats._magazineSize || _ammoLeft <= 0)
-                {
-                    _reloading = false;
-                }
-                else
-                {
-                    _reloadStartTime = Time.time;
-                }
-
-                OnAmmoChangeEvent();
-            }
-        }
+        _muzzleFlash.enabled = false;
     }
-
 
     private void RotateWeapon(float angle)
     {
@@ -184,7 +139,7 @@ public class PlayerWeapon : Shooter, IItem
     {
         if (_ammoChangeEvent != null)
         {
-            _ammoChangeEvent(_ammoInMagazine, _ammoLeft);
+            _ammoChangeEvent(_ammoLeft);
         }
     }
 

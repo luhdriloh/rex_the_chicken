@@ -96,25 +96,10 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         //   aim in player vicinity
     }
 
-    private bool PlayerInLineOfSight()
-    {
-        // create a filter for the raycast
-        RaycastHit2D[] hits = new RaycastHit2D[1];
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.SetLayerMask(LayerMask.GetMask("Player"));
-        filter.useTriggers = true;
-
-        // get target position
-        Vector3 direction = _playerTransform.position - transform.position;
-        int collidersHit = Physics2D.Raycast(transform.position, direction.normalized * _lengthOfLineOfSight, filter, hits);
-
-        return collidersHit > 0;
-    }
-
     private IEnumerator IdleMovement()
     {
         // move at random intervals
-        while (true)
+        while (_dead == false)
         {
             float randomAngle = Random.Range(0f, 359f);
             _directionToMoveIn = new Vector2(Mathf.Sin(Mathf.Deg2Rad * randomAngle), Mathf.Cos(Mathf.Deg2Rad * randomAngle));
@@ -141,9 +126,10 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
             _enemyWeapon.SetNewWeaponRotation(angle);
 
             float fireWaitTime = Random.Range(_minAimInterval, _maxAimInterval);
+            bool fire = PlayerInView();
 
             yield return new WaitForSeconds(fireWaitTime);
-            if (_setNoticeSprite)
+            if (_setNoticeSprite && PlayerInView())
             {
                 _noticeGameobject.SetActive(true);
                 yield return new WaitForSeconds(_noticeTime);
@@ -152,7 +138,7 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
 
             for (int i = 0; i < _bulletsToFire; i++)
             {
-                if (PlayerInView())
+                if (fire)
                 {
                     _enemyWeapon.FireWeapon();
                 }
@@ -165,6 +151,11 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
 
     private void Move(Vector3 direction)
     {
+        if (_dead)
+        {
+            return;
+        }
+
         // flip sprite if needed
         if (direction.x > Mathf.Epsilon)
         {
@@ -195,11 +186,11 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
 
     private void Die()
     {
+        StopMovement();
         StopCoroutine("IdleMovement");
         StopCoroutine("ShootInIntervals");
-        _dead = true;
-        _rigidbody.velocity = Vector2.zero;
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        _dead = true;
 
         // put down weapon
         _enemyWeapon.DropWeapon();
@@ -214,6 +205,7 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         _animator.enabled = false;
         _spriteRenderer.sprite = _deadSprite;
         _deathHandler();
+        _rigidbody.velocity = Vector2.zero;
     }
 
     public void AddDeathDelegate(OnEnemyDeathHandler deathHandler)
@@ -225,9 +217,10 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
     }
 
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount, Vector2 bulletDirection)
     {
         _health -= damageAmount;
+        _rigidbody.MovePosition(transform.position + (Vector3)(bulletDirection.normalized * .2f));
 
         if (_health <= 0)
         {

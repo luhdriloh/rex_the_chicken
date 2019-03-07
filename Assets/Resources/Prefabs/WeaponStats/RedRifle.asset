@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d205311780e040d48de7c1a86ccc6e9, type: 3}
   m_Name: BasicEnemyRifle
   m_EditorClassIdentifier: 
-  _description: BasicRedRifle
-  _recoilInDegrees: 3
+  _description: RedRifle
+  _recoilInDegrees: 5
   _weaponDamage: 1
   _ammoCapacity: 100
   _magazineSize: 20
