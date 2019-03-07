@@ -18,13 +18,25 @@ public class LevelCreator : MonoBehaviour
     public TileBase _fillTile;
     public TileBase _fillRuleTile;
 
+    private DungeonCreationValues _dungeonCreationValues;
     private HashSet<Vector2Int> _dungeonTiles;
     private List<Vector2Int> _mapRect;
     private LevelPlacer _placer;
 
+    private Dictionary<Direction, float> _mapBiases;
+
     private void Start()
     {
-        _dungeonTiles = DrunkWalkerDungeonCreator.CreateDungeon(_levelCreationData._numberOfWalkers, _levelCreationData._numberOfIterations, _levelCreationData._overlapAllowed);
+        _mapBiases = new Dictionary<Direction, float>
+        {
+            { Direction.NORTH, .2f },
+            { Direction.EAST, .4f },
+            { Direction.SOUTH, .2f },
+            { Direction.WEST, .2f }
+        };
+
+        _dungeonCreationValues = DrunkWalkerDungeonCreator.CreateDungeon(_levelCreationData._numberOfWalkers, _levelCreationData._numberOfIterations, _levelCreationData._overlapAllowed, _mapBiases);
+        _dungeonTiles = _dungeonCreationValues.GetDungeonFill();
 
         if (_levelCreationData._tileSize > 1)
         {
@@ -35,55 +47,17 @@ public class LevelCreator : MonoBehaviour
         HashSet<Vector2Int> fillTiles = new HashSet<Vector2Int>(_dungeonTiles.Except(edgeTiles));
 
         _placer = GetComponent<LevelPlacer>();
-        _placer.PlaceThings(fillTiles);
+        _placer.PlaceThings(fillTiles, _dungeonCreationValues.GetDungeonEndPosition(), _levelCreationData._tileSize);
 
         // a vector indicating places to draw grass or random environment details
         // grass
         // water
         // flowers / mushrooms etc
 
-        DrawWorldFill(_mapRect, _tilemapForFill, _worldFill);
+        //DrawWorldFill(_mapRect, _tilemapForFill, _worldFill);
         DrawDungeonTiles(_dungeonTiles, _tilemapForFill, _fillTile);
         DrawDungeonTiles(_dungeonTiles, _tilemapToDrawFloor, _fillRuleTile);
     }
-
-
-    //private void Update()
-    //{
-        //if (_scanned == false && Time.time - _startTime > _scanTime)
-        //{
-        //    AstarPath.active.Scan();
-        //    _scanned = true;
-        //}
-    //}
-
-
-    //private void SetUpAStarGraph()
-    //{
-    //    // This holds all graph data
-    //    AstarData data = AstarPath.active.data;
-
-    //    // This creates a Grid Graph
-    //    GridGraph gg = data.gridGraph;
-    //    gg.rotation = new Vector3(gg.rotation.y - 90, 270, 90);
-
-    //    // set grid graph settings
-    //    gg.collision.use2D = true;
-    //    gg.collision.type = ColliderType.Sphere;
-    //    gg.collision.diameter = 1;
-    //    gg.collision.mask = LayerMask.GetMask("MapEdge");
-
-    //    // Setup a grid graph with some values
-    //    int width = _mapRect[1].x - _mapRect[0].x;
-    //    int depth = _mapRect[1].y - _mapRect[0].y;
-    //    float nodeSize = 1;
-
-    //    gg.center = new Vector3(_mapRect[0].x + width / 2f, _mapRect[0].y + depth / 2f, 0);
-        
-
-    //    // Updates internal size from the above values
-    //    gg.SetDimensions(width, depth, nodeSize);
-    //}
 
 
     private void DrawWorldFill(List<Vector2Int> mapRect, Tilemap tileMapToDrawOn, TileBase fillTile)

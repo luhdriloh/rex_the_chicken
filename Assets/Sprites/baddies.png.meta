@@ -137,6 +137,7 @@ TextureImporter:
     21300264: baddies_132
     21300266: chest2
     21300268: chest3
+    21300270: baddies_50
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1805,7 +1806,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 225
-        y: 289
+        y: 290
         width: 14
         height: 20
       alignment: 0
@@ -2909,7 +2910,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2929,13 +2930,33 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: e9be2f5fc6b6742a28a121911f3fa40b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baddies_50
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 323
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a921f4c5b77e4d59b426d81655693f6
       vertices: []
       indices: 
       edges: []

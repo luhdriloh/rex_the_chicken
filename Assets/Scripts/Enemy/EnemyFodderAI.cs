@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
 {
     public Sprite _deadSprite;
+    public GameObject _noticeGameobject;
+
     public EnemyWeapon _enemyWeapon;
     public int _health;
     public float _movementSpeed;
@@ -19,6 +21,11 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
     public float _maxAimInterval;
     public float _minIdleRestTime;
     public float _maxIdleRestTime;
+
+    // notice for player
+    private bool _setNoticeSprite;
+    private float _noticeTime;
+    private int _bulletsToFire; 
 
     private static OnEnemyDeathHandler _deathHandler;
     private SpriteRenderer _spriteRenderer;
@@ -43,6 +50,20 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         _shooting = true;
         _rightFacing = false;
         _dead = false;
+
+        GetComponent<CircleCollider2D>().enabled = true;
+
+        // set up the enemy weapon
+        Object[] weaponsList = Resources.LoadAll("Prefabs/Enemy/EnemyWeapons/Stage1Weapons", typeof(GameObject));
+        GameObject enemyWeapon = Instantiate(weaponsList[Random.Range(0, weaponsList.Length)]) as GameObject;
+        enemyWeapon.transform.parent = transform;
+        enemyWeapon.transform.localPosition = new Vector3(0f, 0f, .1f);
+
+        _enemyWeapon = enemyWeapon.GetComponent<EnemyWeapon>();
+
+        _setNoticeSprite = _enemyWeapon._setNotice;
+        _noticeTime = _enemyWeapon._noticeTime;
+        _bulletsToFire = _enemyWeapon._bulletsToFire;
     }
 
     private void Update ()
@@ -119,16 +140,23 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
             float angle = Mathf.Atan2(_directionToFire.y, _directionToFire.x) * Mathf.Rad2Deg;
             _enemyWeapon.SetNewWeaponRotation(angle);
 
-            yield return new WaitForSeconds(Random.Range(_minAimInterval, _maxAimInterval));
+            float fireWaitTime = Random.Range(_minAimInterval, _maxAimInterval);
 
-            for (int i = 0; i < 2; i++)
+            yield return new WaitForSeconds(fireWaitTime);
+            if (_setNoticeSprite)
             {
-                yield return new WaitForSeconds(_enemyWeapon.GetFireDelay());
+                _noticeGameobject.SetActive(true);
+                yield return new WaitForSeconds(_noticeTime);
+                _noticeGameobject.SetActive(false);
+            }
 
+            for (int i = 0; i < _bulletsToFire; i++)
+            {
                 if (PlayerInView())
                 {
                     _enemyWeapon.FireWeapon();
                 }
+                yield return new WaitForSeconds(_enemyWeapon.GetFireDelay());
             }
 
             yield return new WaitForSeconds(Random.Range(_minFireInterval, _maxFireInterval));
@@ -173,6 +201,10 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         _rigidbody.velocity = Vector2.zero;
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
+        // put down weapon
+        _enemyWeapon.DropWeapon();
+
+        // remove children
         var children = new List<GameObject>();
         foreach (Transform child in transform) children.Add(child.gameObject);
         children.ForEach(child => Destroy(child));

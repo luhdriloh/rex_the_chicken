@@ -10,15 +10,15 @@ public class LevelPlacer : MonoBehaviour
     public int _numberOfEnemies;
 
     private HashSet<int> _placesTaken;
-    private List<Vector2> _spawnPositions;
     private int _enemiesAlive;
+
 
     private void Awake()
     {
         _placesTaken = new HashSet<int>();
-        _spawnPositions = new List<Vector2>();
         _enemiesAlive = _numberOfEnemies;
     }
+
 
     private void DeathDelegate()
     {
@@ -29,12 +29,8 @@ public class LevelPlacer : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy()
-    { 
-        
-    }
 
-    public void PlaceThings(HashSet<Vector2Int> innerTiles)
+    public void PlaceThings(HashSet<Vector2Int> innerTiles, List<Vector2Int> endPositions, int tileSize)
     {
         List<Vector2Int> innerTileList = new List<Vector2Int>(innerTiles);
 
@@ -73,6 +69,8 @@ public class LevelPlacer : MonoBehaviour
             }
         }
 
-        _player.transform.position = new Vector3(playerposition.x, playerposition.y, _player.transform.position.z);
+        // set gate and player positions
+        GameObject.Find("Gate").transform.position = new Vector3(endPositions[0].x * tileSize + tileSize / 2f, endPositions[0].y * tileSize + tileSize / 2f);
+        _player.transform.position = new Vector3(tileSize/2f, tileSize / 2f, _player.transform.position.z);
     }
 }

@@ -16,7 +16,7 @@ public class ItemBox : MonoBehaviour
         Object[] weaponsList = Resources.LoadAll("Prefabs/PlayerWeapons/Stage1Weapons", typeof(GameObject));
         GameObject myObj = Instantiate(weaponsList[Random.Range(0, weaponsList.Length)]) as GameObject;
         myObj.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 359));
-        myObj.transform.position = (Vector2)transform.position + new Vector2(Random.Range(-.5f, .5f), Random.Range(-.5f, -1f));
+        myObj.transform.position = (Vector2)transform.position + new Vector2(Random.Range(-.5f, .5f), Random.Range(-1f, -2f));
         myObj.GetComponent<PlayerWeapon>()._pickup = true;
         myObj.SetActive(false);
 

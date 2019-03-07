@@ -44,15 +44,22 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        // pickup item
         if (Input.GetKeyDown(KeyCode.E))
         {
             PickupItem();
         }
 
-        // pickup item
+        // switch item
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SwitchItem(1);
+        }
+
+        // throw weapon
+        if (Input.GetMouseButtonUp(1))
+        {
+            ThrowWeapon();
         }
     }
 
@@ -71,13 +78,16 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (_itemList[_itemInUseIndex] == null || newItemInUseIndex == _itemInUseIndex)
+        if (_itemList[_itemInUseIndex] == null && newItemInUseIndex == _itemInUseIndex)
         {
             return;
         }
 
         // set old item as inactive
-        _itemList[_itemInUseIndex].GetComponent<IItem>().SetAsInactiveItem();
+        if (_itemList[_itemInUseIndex] != null)
+        {
+            _itemList[_itemInUseIndex].GetComponent<IItem>().SetAsInactiveItem();
+        }
 
         // set new item as active
         _itemInUseIndex = newItemInUseIndex;
@@ -105,13 +115,17 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // we have an empty item slot
+        // we do not have an empty weapon slot
         if (emptyWeaponSlot == -1)
         {
             DropItem(_itemInUseIndex, itemPickup.transform.position);
         }
         else
         {
+            if (_itemList[_itemInUseIndex] != null)
+            {
+                _itemList[_itemInUseIndex].GetComponent<PlayerWeapon>().SetAsInactiveItem();
+            }
             _itemInUseIndex = emptyWeaponSlot;
         }
 
@@ -141,10 +155,20 @@ public class Inventory : MonoBehaviour
         _itemList[indexToDrop].GetComponent<PlayerWeapon>().SetAsInventory(false);
         _itemList[indexToDrop].transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 359));
         _itemList[indexToDrop].transform.position = position;
+        _itemList[indexToDrop] = null;
     }
 
     private void ThrowWeapon()
-    { 
-    
+    {
+        _itemList[_itemInUseIndex].transform.parent = null;
+        _itemList[_itemInUseIndex].GetComponent<PlayerWeapon>().SetAsInventory(false);
+
+        Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = target - transform.position;
+
+        _itemList[_itemInUseIndex].GetComponent<ThrowItemScript>().Throw(direction);
+        _itemList[_itemInUseIndex] = null;
+
+        SwitchItem(1);
     }
 }

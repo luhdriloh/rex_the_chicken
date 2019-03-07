@@ -39,6 +39,8 @@ GameObject:
   - component: {fileID: 82888588689328114}
   - component: {fileID: 114688866923694352}
   - component: {fileID: 61209756403527388}
+  - component: {fileID: 114649602997535856}
+  - component: {fileID: 50156305079492872}
   m_Layer: 9
   m_Name: mp5
   m_TagString: Untagged
@@ -66,13 +68,33 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993942559618892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3173949, y: 0.6683328, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4011109231269480}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50156305079492872
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993942559618892}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61209756403527388
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -193,6 +215,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114649602997535856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993942559618892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76121a9df03d1427c82f332912619c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 17
+  _acceleration: 15
 --- !u!114 &114688866923694352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca20de0d88bb046e28accc90c7f11ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerWeapon: 1
   _weaponProjectile: {fileID: 1653048529512004, guid: 9d7ae1d169a8d48e8a1aec416e9c1780,
     type: 2}
   _firepointGameObject: {fileID: 1076732912375012}

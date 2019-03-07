@@ -126,6 +126,7 @@ namespace ActionGameFramework.Projectiles
             _rigidbody.velocity += (Vector2)(transform.right * _acceleration * Time.deltaTime);
         }
 
+
         protected virtual void Fire(Vector3 firingVector)
         {
             _fired = true;
@@ -143,6 +144,7 @@ namespace ActionGameFramework.Projectiles
 
             _timeAlive = 0f;
         }
+
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

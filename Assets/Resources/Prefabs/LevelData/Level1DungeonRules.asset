@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9d0f1fa4fcc49da932c247b5d78668, type: 3}
   m_Name: Level1DungeonRules
   m_EditorClassIdentifier: 
-  _overlapAllowed: 0
+  _overlapAllowed: 1
   _tileSize: 4
-  _numberOfWalkers: 4
-  _numberOfIterations: 60
+  _numberOfWalkers: 1
+  _numberOfIterations: 300

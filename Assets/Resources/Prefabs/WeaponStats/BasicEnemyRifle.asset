@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d205311780e040d48de7c1a86ccc6e9, type: 3}
   m_Name: BasicEnemyRifle
   m_EditorClassIdentifier: 
-  _description: BasicEnemyRifle
+  _description: BasicRedRifle
   _recoilInDegrees: 3
-  _weaponDamage: 3
-  _ammoCapacity: 0
-  _magazineSize: 0
-  _usesMagazine: 0
-  _reloadTime: 0
-  _rpmMax: 100
-  _rpmTapMax: 100
+  _weaponDamage: 1
+  _ammoCapacity: 100
+  _magazineSize: 20
+  _usesMagazine: 1
+  _reloadTime: 1.5
+  _rpmMax: 220
+  _rpmTapMax: 220
   _projectilesPerShot: 1

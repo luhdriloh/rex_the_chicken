@@ -22,14 +22,31 @@ public class DrunkWalker
         { Direction.WEST, new Vector2Int(-1, 0) }
     };
 
+
     public DrunkWalker(Vector2Int startPosition)
     {
         Position = startPosition;
     }
 
-    public Vector2Int WalkInRandomDirection()
+
+    public Vector2Int WalkInRandomDirection(Dictionary<Direction, float> _mapBiases)
     {
-        Direction directionForWalkerToGo = (Direction)Random.Range(0, 4);
+        float whichDirection = Random.value;
+        float percent = 0;
+
+        Direction directionForWalkerToGo = Direction.NORTH;
+
+        foreach (Direction direction in _mapBiases.Keys)
+        {
+            percent += _mapBiases[direction];
+
+            if (whichDirection < percent)
+            {
+                directionForWalkerToGo = direction;
+                break;
+            }
+        }
+
         Position += _directionToMovementMapping[directionForWalkerToGo];
         return Position;
     }

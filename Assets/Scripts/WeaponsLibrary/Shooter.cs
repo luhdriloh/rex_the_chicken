@@ -8,6 +8,7 @@ public delegate void ReturnToPool(LinearProjectile projectile);
 
 public class Shooter : MonoBehaviour
 {
+    public bool _playerWeapon;
     public GameObject _weaponProjectile;
     public GameObject _firepointGameObject;
     public ShooterStats _shooterStats;
@@ -73,6 +74,7 @@ public class Shooter : MonoBehaviour
         _projectilesNotInUse.Push(projectile);
     }
 
+
     public LinearProjectile GetObjectFromPool()
     {
         if (_projectilesNotInUse.Count == 0)
@@ -85,20 +87,34 @@ public class Shooter : MonoBehaviour
         return projectileToReturn;
     }
 
+
     private void AddProjectilesToPool(int amountToAdd)
     {
-        ReturnToPool delegateToUse = HandleReturnToPool;
+        int layerToSet = _playerWeapon == true ? LayerMask.NameToLayer("Projectile") : LayerMask.NameToLayer("EnemyProjectile");
 
-        for (int i = 0; i < amountToAdd; i++)
+        GameObject newGameObject = Instantiate(_weaponProjectile, transform.position, Quaternion.identity);
+        newGameObject.layer = layerToSet;
+        LinearProjectile projectile = newGameObject.GetComponent<LinearProjectile>();
+        bool halfStartSpeed = _playerWeapon == false && (projectile._startSpeed > 8 && _shooterStats._projectilesPerShot == 1);
+        SetProjectileUp(projectile, halfStartSpeed);
+
+        for (int i = 1; i < amountToAdd; i++)
         {
-            GameObject newGameObject = Instantiate(_weaponProjectile, transform.position, Quaternion.identity);
-            LinearProjectile projectile = newGameObject.GetComponent<LinearProjectile>();
-            projectile._returnToPool = delegateToUse;
-            projectile._weaponDamage = _shooterStats._weaponDamage;
-            _projectilesNotInUse.Push(projectile);
-
-            // turn projectile off
-            newGameObject.SetActive(false);
+            newGameObject = Instantiate(_weaponProjectile, transform.position, Quaternion.identity);
+            newGameObject.layer = layerToSet;
+            projectile = newGameObject.GetComponent<LinearProjectile>();
+            SetProjectileUp(projectile, halfStartSpeed);
         }
+    }
+
+
+    private void SetProjectileUp(LinearProjectile projectile, bool halfStartSpeed)
+    {
+        projectile._returnToPool = HandleReturnToPool;
+        projectile._weaponDamage = _shooterStats._weaponDamage;
+        _projectilesNotInUse.Push(projectile);
+
+        projectile._startSpeed = halfStartSpeed ? projectile._startSpeed / 2f : projectile._startSpeed;
+        projectile.gameObject.SetActive(false);
     }
 }

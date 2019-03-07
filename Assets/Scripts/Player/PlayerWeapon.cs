@@ -152,12 +152,6 @@ public class PlayerWeapon : Shooter, IItem
     }
 
 
-    private void ThrowWeapon()
-    { 
-        
-    }
-
-
     private void RotateWeapon(float angle)
     {
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
