@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: f3943ed86e59343dfa6aa8c3f7b067f0
+guid: 771805a393dfd4a30bd6ee8d947acef7
 TextureImporter:
   fileIDToRecycleName:
-    21300000: chicken_sprites_0
-    21300002: chicken_sprites_1
-    21300004: chicken_sprites_2
-    21300006: chicken_sprites_3
-    21300008: chicken_sprites_4
-    21300010: chicken_sprites_5
-    21300012: chicken_sprites_6
-    21300014: chicken_sprites_7
+    21300000: game_effects_0
+    21300002: game_effects_1
+    21300004: game_effects_2
+    21300006: game_effects_3
+    21300008: game_effects_5
+    21300010: game_effects_6
+    21300012: game_effects_7
+    21300014: game_effects_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -114,93 +114,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chicken_sprites_0
+      name: game_effects_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 18e94847ee43a434c89ac5b71aaf0a21
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chicken_sprites_1
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 2
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e16843e895644f7f88f8e2dc7ba4435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chicken_sprites_2
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 2
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 95f2d1f2d647b4d73aa3207e2d5ff151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chicken_sprites_3
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 2
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a5521c2622324339a7254b629df4aa0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chicken_sprites_4
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 18
-        width: 13
-        height: 11
+        x: 0
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,19 +128,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80277a5574a7548b6bf53ef4d4d50424
+      spriteID: afd9271bd87de4b51901f2aa8edb9dbe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chicken_sprites_5
+      name: game_effects_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 19
-        width: 12
-        height: 11
+        x: 16
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,19 +148,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d2e96e262173415e890be72c940d7d6
+      spriteID: e7450694e63f345ae899c780ebbe2d0a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chicken_sprites_6
+      name: game_effects_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 18
-        width: 13
-        height: 12
+        x: 32
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,19 +168,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4ea6be6f48b94a048748b6dee163d22
+      spriteID: 497bbdcffcd3b4e2aa013ac97e5be35b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chicken_sprites_7
+      name: game_effects_3
       rect:
         serializedVersion: 2
-        x: 50
-        y: 18
-        width: 13
-        height: 12
+        x: 48
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,7 +188,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96a323e6f41d048d8b5c12bedc7c166f
+      spriteID: ba48f32b86926408caf5767d4c354870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_effects_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe59e7a85b7f4bdd8e0d52441ab013f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_effects_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5296d1d1c1c284bbb9d1031b75dd8884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_effects_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef16e1482d1994d09a3a043f6195ad2d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_effects_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a9c12e4c7e1d4bcabc1a9fe0c4fd8f4
       vertices: []
       indices: 
       edges: []
@@ -276,7 +276,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6292c818f00db49be8c82b56d7d468b0
+    spriteID: 80ddbd9c7d71d4ee484de9e8e49e34fd
     vertices: []
     indices: 
     edges: []

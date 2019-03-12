@@ -9,15 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d205311780e040d48de7c1a86ccc6e9, type: 3}
-  m_Name: RedRifle
+  m_Name: RedShotgun
   m_EditorClassIdentifier: 
-  _description: RedRifle
-  _recoilInDegrees: 5
+  _description: RedShotgun
+  _recoilInDegrees: 35
   _weaponDamage: 1
-  _ammoCapacity: 100
-  _magazineSize: 20
-  _usesMagazine: 1
-  _reloadTime: 1.5
-  _rpmMax: 220
-  _rpmTapMax: 220
-  _projectilesPerShot: 1
+  _ammoCapacity: 64
+  _magazineSize: 8
+  _usesMagazine: 0
+  _reloadTime: 0.5
+  _rpmMax: 100
+  _rpmTapMax: 100
+  _projectilesPerShot: 12

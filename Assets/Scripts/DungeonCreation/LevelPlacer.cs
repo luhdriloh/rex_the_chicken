@@ -5,7 +5,9 @@ public delegate void OnEnemyDeathHandler();
 
 public class LevelPlacer : MonoBehaviour
 {
-    public List<GameObject> _fodderPrototypes;
+    public List<GameObject> _enemyPrototypes;
+    public List<float> _enemySpawnPercentages;
+
     public GameObject _player;
     public int _numberOfEnemies;
 
@@ -52,9 +54,23 @@ public class LevelPlacer : MonoBehaviour
                 }
             }
 
-            GameObject fodder = Instantiate(_fodderPrototypes[Random.Range(0, _fodderPrototypes.Count)]);
+            float percentage = Random.value;
+            int whichTypeOfEnemy = 0;
+            float sum = 0;
+
+            for (int enemyProtoIndex = 0; enemyProtoIndex < _enemyPrototypes.Count; enemyProtoIndex++)
+            {
+                sum += _enemySpawnPercentages[enemyProtoIndex];
+                if (percentage <= sum)
+                {
+                    whichTypeOfEnemy = enemyProtoIndex;
+                    break;
+                }
+            }
+
+            GameObject fodder = Instantiate(_enemyPrototypes[whichTypeOfEnemy]);
             fodder.GetComponent<IEnemy>().AddDeathDelegate(DeathDelegate);
-            fodder.transform.position = new Vector3(newPosition.x, newPosition.y, 0);
+            fodder.transform.position = new Vector3(newPosition.x, newPosition.y, -1);
         }
 
         // set gate and player positions

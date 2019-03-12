@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
 {
-    public Sprite _deadSprite;
     public GameObject _noticeGameobject;
 
     public EnemyWeapon _enemyWeapon;
@@ -54,12 +53,12 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         GetComponent<CircleCollider2D>().enabled = true;
 
         // set up the enemy weapon
-        Object[] weaponsList = Resources.LoadAll("Prefabs/Enemy/EnemyWeapons/Stage1Weapons", typeof(GameObject));
-        GameObject enemyWeapon = Instantiate(weaponsList[Random.Range(0, weaponsList.Length)]) as GameObject;
-        enemyWeapon.transform.parent = transform;
-        enemyWeapon.transform.localPosition = new Vector3(0f, 0f, .1f);
+        //Object[] weaponsList = Resources.LoadAll("Prefabs/Enemy/EnemyWeapons/Stage1Weapons", typeof(GameObject));
+        //GameObject enemyWeapon = Instantiate(weaponsList[Random.Range(0, weaponsList.Length)]) as GameObject;
+        //enemyWeapon.transform.parent = transform;
+        //enemyWeapon.transform.localPosition = new Vector3(0f, 0f, .1f);
 
-        _enemyWeapon = enemyWeapon.GetComponent<EnemyWeapon>();
+        //_enemyWeapon = enemyWeapon.GetComponent<EnemyWeapon>();
 
         _setNoticeSprite = _enemyWeapon._setNotice;
         _noticeTime = _enemyWeapon._noticeTime;
@@ -186,10 +185,9 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
 
     private void Die()
     {
-        StopMovement();
         StopCoroutine("IdleMovement");
         StopCoroutine("ShootInIntervals");
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
         _dead = true;
 
         // put down weapon
@@ -202,10 +200,9 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
 
 
         GetComponent<CircleCollider2D>().enabled = false;
-        _animator.enabled = false;
-        _spriteRenderer.sprite = _deadSprite;
+        _animator.SetBool("Die", true);
+        StopMovement();
         _deathHandler();
-        _rigidbody.velocity = Vector2.zero;
     }
 
     public void AddDeathDelegate(OnEnemyDeathHandler deathHandler)
@@ -221,6 +218,7 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
     {
         _health -= damageAmount;
         _rigidbody.MovePosition(transform.position + (Vector3)(bulletDirection.normalized * .2f));
+        BloodSplatterEffect._bloodSplatterEffect.PlaceBloodSplatter(transform.position + (Vector3)(bulletDirection.normalized * 1f) + Vector3.forward);
 
         if (_health <= 0)
         {

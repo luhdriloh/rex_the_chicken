@@ -6,6 +6,8 @@ using ActionGameFramework.Helpers;
 
 public delegate void ReturnToPool(LinearProjectile projectile);
 
+// public static ammo
+
 public class Shooter : MonoBehaviour
 {
     public bool _playerWeapon;

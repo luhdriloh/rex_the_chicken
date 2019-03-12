@@ -7,9 +7,9 @@ public delegate void AmmoChangeHandler(int ammoLeft);
 
 public enum WeaponType
 { 
-    MACHINGUN,
-    SNIPER,
-    SHOTGUN
+    LIGHT,
+    SPECIAL,
+    HEAVY
 };
 
 

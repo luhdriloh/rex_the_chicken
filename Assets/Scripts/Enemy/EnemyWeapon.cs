@@ -79,7 +79,7 @@ public class EnemyWeapon : Shooter
         {
             _dropped = true;
             _weaponToDrop.transform.parent = null;
-            _weaponToDrop.gameObject.transform.position = new Vector3(transform.position.x + Random.Range(-.5f, .5f), transform.position.y + Random.Range(-.5f, .5f), -1f);
+            _weaponToDrop.gameObject.transform.position = new Vector3(transform.position.x + Random.Range(-.5f, .5f), transform.position.y + Random.Range(-.5f, .5f), -1.1f);
             _weaponToDrop.gameObject.SetActive(true);
         }
     }

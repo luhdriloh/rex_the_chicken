@@ -1,15 +1,12 @@
 fileFormatVersion: 2
-guid: f3943ed86e59343dfa6aa8c3f7b067f0
+guid: 440dbbe84ce8f436fa2072f1faded8d0
 TextureImporter:
   fileIDToRecycleName:
-    21300000: chicken_sprites_0
-    21300002: chicken_sprites_1
-    21300004: chicken_sprites_2
-    21300006: chicken_sprites_3
-    21300008: chicken_sprites_4
-    21300010: chicken_sprites_5
-    21300012: chicken_sprites_6
-    21300014: chicken_sprites_7
+    21300000: HUD_0
+    21300002: HUD_1
+    21300004: HUD_2
+    21300006: HUD_3
+    21300008: HUD_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -114,13 +111,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chicken_sprites_0
+      name: HUD_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 13
-        height: 11
+        x: 1
+        y: 33
+        width: 51
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,147 +125,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18e94847ee43a434c89ac5b71aaf0a21
+      spriteID: 0771a77ebc1ca41ce9f4385eed53e3d6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chicken_sprites_1
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 2
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e16843e895644f7f88f8e2dc7ba4435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chicken_sprites_2
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 2
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 95f2d1f2d647b4d73aa3207e2d5ff151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chicken_sprites_3
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 2
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a5521c2622324339a7254b629df4aa0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chicken_sprites_4
+      name: HUD_1
       rect:
         serializedVersion: 2
         x: 3
-        y: 18
-        width: 13
-        height: 11
+        y: 16
+        width: 8
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80277a5574a7548b6bf53ef4d4d50424
+      spriteID: 8a3d998eecc8b4383929a7f113f6fd81
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chicken_sprites_5
+      name: HUD_2
       rect:
         serializedVersion: 2
-        x: 19
-        y: 19
-        width: 12
-        height: 11
+        x: 2
+        y: 3
+        width: 29
+        height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d2e96e262173415e890be72c940d7d6
+      spriteID: 1e9eff075f074486abb81fa234cd3acf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chicken_sprites_6
+      name: HUD_3
       rect:
         serializedVersion: 2
-        x: 34
-        y: 18
-        width: 13
-        height: 12
+        x: 21
+        y: 16
+        width: 8
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4ea6be6f48b94a048748b6dee163d22
+      spriteID: 3e489002261f4484f83584cfd0070a05
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chicken_sprites_7
+      name: HUD_4
       rect:
         serializedVersion: 2
-        x: 50
-        y: 18
-        width: 13
-        height: 12
+        x: 36
+        y: 16
+        width: 8
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96a323e6f41d048d8b5c12bedc7c166f
+      spriteID: c240e5269ea494045ba00377591edbf2
       vertices: []
       indices: 
       edges: []
@@ -276,7 +213,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6292c818f00db49be8c82b56d7d468b0
+    spriteID: 206f02e82b6124b1b8a426acf1883896
     vertices: []
     indices: 
     edges: []

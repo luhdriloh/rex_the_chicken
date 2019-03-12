@@ -54,8 +54,8 @@ public class LevelCreator : MonoBehaviour
         // water
         // flowers / mushrooms etc
 
-        //DrawWorldFill(_mapRect, _tilemapForFill, _worldFill);
-        DrawDungeonTiles(_dungeonTiles, _tilemapForFill, _fillTile);
+        // dont need the one below, just change the physics shape of the sprite
+        DrawDungeonTiles(edgeTiles, _tilemapForFill, _fillTile);
         DrawDungeonTiles(_dungeonTiles, _tilemapToDrawFloor, _fillRuleTile);
     }
 
@@ -83,6 +83,7 @@ public class LevelCreator : MonoBehaviour
 
     private void DrawDungeonTiles(IEnumerable<Vector2Int> tiles, Tilemap tilemapToUse, TileBase tilesToUse)
     {
+        // if an edge tile make the z axis higher
         foreach (Vector2Int tileLocation in tiles)
         {
             tilemapToUse.SetTile(new Vector3Int(tileLocation.x, tileLocation.y, 0), tilesToUse);

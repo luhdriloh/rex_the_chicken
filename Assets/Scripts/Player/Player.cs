@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public delegate void HealthChangeHandler(int newHealthValue, int maxHealthValue);
@@ -15,8 +17,10 @@ public class Player : MonoBehaviour, IDamager
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    private ParticleSystem _walkDust;
     private bool _walking;
     private bool _rightFacing;
+    private bool _roll;
 
     private void Awake()
     {
@@ -24,13 +28,21 @@ public class Player : MonoBehaviour, IDamager
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _walkDust = GetComponentInChildren<ParticleSystem>();
         _walking = false;
         _rightFacing = true;
     }
 
     private void Update()
     {
-        Move();
+        if (_roll == false)
+        {
+            Move();
+        }
+        else
+        {
+            _walkDust.Emit(2);
+        }
     }
 
     private void Move()
@@ -55,24 +67,36 @@ public class Player : MonoBehaviour, IDamager
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            _animator.SetTrigger("Roll");
+            StartCoroutine(StopRoll(.6f));
+            _roll = true;
+        }
+
         // set new player speed
-        Vector2 movementInDirection = new Vector2(xMovement, Input.GetAxisRaw("Vertical")).normalized * _movementSpeed;
+        float speed = _movementSpeed + (_roll == true ? 2f : 0f);
+        Vector2 movementInDirection = new Vector2(xMovement, Input.GetAxisRaw("Vertical")).normalized * speed;
         _rigidbody.velocity = movementInDirection;
 
         // set walking animation
         if (_walking == false && movementInDirection.magnitude >= 1)
         {
+            _walkDust.Play();
             _animator.SetBool("Moving", true);
             _walking = true;
         }
         else if (_walking == true && movementInDirection.magnitude < 1)
         {
+            _walkDust.Stop();
             _animator.SetBool("Moving", false);
             _walking = false;
         }
 
-        float yPos = transform.position.y;
-        transform.position = new Vector3(transform.position.x, transform.position.y, -3f + (yPos * .01f));
+
+        // for trees and shit
+        //float yPos = transform.position.y;
+        //transform.position = new Vector3(transform.position.x, transform.position.y, -3f + (yPos * .01f));
     }
 
 
@@ -113,6 +137,14 @@ public class Player : MonoBehaviour, IDamager
 
     public void TakeDamage(int amountOfDamage, Vector2 bulletDirection)
     {
+        _rigidbody.MovePosition(transform.position + (Vector3)(bulletDirection.normalized * .2f));
+        BloodSplatterEffect._bloodSplatterEffect.PlaceBloodSplatter(transform.position + (Vector3)(bulletDirection.normalized * .4f) + Vector3.forward);
         HealthChange(-amountOfDamage);
+    }
+
+    private IEnumerator StopRoll(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _roll = false;
     }
 }
