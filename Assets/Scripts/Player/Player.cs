@@ -67,6 +67,7 @@ public class Player : MonoBehaviour, IDamager
             }
         }
 
+        // roll
         if (Input.GetKeyDown(KeyCode.M) && _rigidbody.velocity.magnitude >= 1)
         {
             _animator.SetTrigger("Roll");
@@ -92,11 +93,6 @@ public class Player : MonoBehaviour, IDamager
             _animator.SetBool("Moving", false);
             _walking = false;
         }
-
-
-        // for trees and shit
-        //float yPos = transform.position.y;
-        //transform.position = new Vector3(transform.position.x, transform.position.y, -3f + (yPos * .01f));
     }
 
 

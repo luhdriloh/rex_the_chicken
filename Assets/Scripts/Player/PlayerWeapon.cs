@@ -102,6 +102,7 @@ public class PlayerWeapon : Shooter, IItem
         _currentTimeBetweenShotFired += Time.deltaTime;
 
         // fire weapon
+        // aim down sight
         if ((Input.GetMouseButtonDown(0) && _currentTimeBetweenShotFired >= _tapFireDelay || Input.GetMouseButton(0) && _currentTimeBetweenShotFired >= _fireDelay))
         {
             if (_weaponAmmo[_weaponType] > 0)

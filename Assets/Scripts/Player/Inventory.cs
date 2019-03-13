@@ -87,12 +87,6 @@ public class Inventory : MonoBehaviour
         {
             SwitchItem(1);
         }
-
-        // throw weapon
-        if (Input.GetMouseButtonUp(1))
-        {
-            ThrowWeapon();
-        }
     }
 
     private void SwitchItem(int indexesToSwitch)
@@ -188,24 +182,5 @@ public class Inventory : MonoBehaviour
         _itemList[indexToDrop].transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 359));
         _itemList[indexToDrop].transform.position = position;
         _itemList[indexToDrop] = null;
-    }
-
-    private void ThrowWeapon()
-    {
-        if (_itemList[_itemInUseIndex] ==  null)
-        {
-            return;
-        }
-
-        _itemList[_itemInUseIndex].transform.parent = null;
-        _itemList[_itemInUseIndex].GetComponent<PlayerWeapon>().SetAsInventory(false);
-
-        Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = target - transform.position;
-
-        _itemList[_itemInUseIndex].GetComponent<ThrowItemScript>().Throw(direction);
-        _itemList[_itemInUseIndex] = null;
-
-        SwitchItem(1);
     }
 }
