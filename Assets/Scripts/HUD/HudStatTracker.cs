@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HudStatTracker : MonoBehaviour
@@ -23,8 +25,8 @@ public class HudStatTracker : MonoBehaviour
     }
 
 
-    private void HandleAmmoChange(int ammoLeft)
+    private void HandleAmmoChange(Dictionary<WeaponType, int> ammoLeft)
     {
-        _ammoLeft.text = "Ammo    " + ammoLeft;
+        //_ammoLeft.text = "Ammo    " + ammoLeft;
     }
 }

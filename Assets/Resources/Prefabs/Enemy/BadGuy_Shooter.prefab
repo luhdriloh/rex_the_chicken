@@ -294,8 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b1d6dab2ece4177b7faec1e1e497c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deadSprite: {fileID: 21300002, guid: f76c8a25ef427402294dfcaa9d591f79, type: 3}
   _noticeGameobject: {fileID: 1538366992669938}
+  _itemSpawn: {fileID: 0}
   _enemyWeapon: {fileID: 114898889898888266}
   _health: 2
   _movementSpeed: 3
@@ -308,6 +308,7 @@ MonoBehaviour:
   _maxAimInterval: 3
   _minIdleRestTime: 1.5
   _maxIdleRestTime: 4
+  _itemSpawnPercentage: 0.15
 --- !u!114 &114898889898888266
 MonoBehaviour:
   m_ObjectHideFlags: 1

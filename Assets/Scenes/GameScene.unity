@@ -394,7 +394,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410696435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.032, y: -0.062, z: -1}
+  m_LocalPosition: {x: -0.0315, y: -0.125, z: -1}
   m_LocalScale: {x: 0.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 996055580}
@@ -515,7 +515,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 420375639}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.19989824, y: -1.0011101, z: 8}
+  m_LocalPosition: {x: -0.19989824, y: -1, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2010736211}
@@ -715,7 +715,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 448704084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.062, z: -1}
+  m_LocalPosition: {x: -0.0315, y: -0.125, z: -1}
   m_LocalScale: {x: 0.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 642276926}
@@ -1383,6 +1383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 589106589}
+  - component: {fileID: 589106590}
   m_Layer: 0
   m_Name: AmmoHUD
   m_TagString: Untagged
@@ -1407,6 +1408,27 @@ Transform:
   m_Father: {fileID: 942691122}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &589106590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 589106588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d597702248d044022b6ad81e70b52860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lightAmmoText: {fileID: 443433902}
+  _specialAmmoText: {fileID: 570608609}
+  _heavyAmmoText: {fileID: 888203737}
+  _lightAmmoBar: {fileID: 410696435}
+  _specialAmmoBar: {fileID: 1209842608}
+  _heavyAmmoBar: {fileID: 448704084}
+  _fullAmmoColor: {r: 0.60784316, g: 0.77254903, b: 0.23921569, a: 1}
+  _emptyAmmoColor: {r: 0.84705883, g: 0.05490196, b: 0.05490196, a: 1}
+  _fullYBarPosition: -0.125
+  _emptyYBarPosition: -0.812
 --- !u!1 &642276924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,7 +1498,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 642276924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0001016, y: -1.0011101, z: 8}
+  m_LocalPosition: {x: 1.0001016, y: -1, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1137995636}
@@ -1637,7 +1659,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3943ed86e59343dfa6aa8c3f7b067f0, type: 3}
+  m_Sprite: {fileID: 21300016, guid: f3943ed86e59343dfa6aa8c3f7b067f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1694,7 +1716,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 0.6875}
+    oldSize: {x: 0.6875, y: 0.6875}
     newSize: {x: 0.6875, y: 0.5625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2082,7 +2104,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 996055578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.399898, y: -1.0011101, z: 8}
+  m_LocalPosition: {x: -1.399898, y: -1, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2025189753}
@@ -2229,7 +2251,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1209842608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.061999798, z: -1}
+  m_LocalPosition: {x: -0.0315, y: -0.125, z: -1}
   m_LocalScale: {x: 0.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 420375641}
@@ -2339,6 +2361,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436355fe90c6f49708fd950f04003221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _miniAmmoBoxProto: {fileID: 1969035542839770, guid: 346914c5302004cd99a528c10d8cafb9,
+    type: 2}
+  _weaponBox: {fileID: 1603560412412230, guid: 6e260dcfd6d1c431397b332497525924, type: 2}
+  _numberOfWeaponBoxes: 2
+  _miniAmmoBoxDisapearTime: 6.5
   _enemyPrototypes:
   - {fileID: 1119711396606838, guid: 412cd4691077e406aa3d4ab22d7e3517, type: 2}
   - {fileID: 1596397686055426, guid: 3537585d415754f3fb116ce1ff69862e, type: 2}
@@ -7387,7 +7414,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2010736210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.031, y: -0.062, z: 0}
+  m_LocalPosition: {x: -0.031, y: -0.093, z: 0}
   m_LocalScale: {x: 0.172, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 420375641}
@@ -7461,7 +7488,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2025189752}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0315, y: -0.058, z: 0}
+  m_LocalPosition: {x: -0.0315, y: -0.093, z: 0}
   m_LocalScale: {x: 0.172, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 996055580}

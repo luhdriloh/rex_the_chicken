@@ -1,8 +1,10 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+
 using UnityEngine;
 
 
-public delegate void AmmoChangeHandler(int ammoLeft);
+public delegate void AmmoChangeHandler(Dictionary<WeaponType, int> ammoLeft);
 
 
 public enum WeaponType
@@ -17,25 +19,51 @@ public class PlayerWeapon : Shooter, IItem
 {
     public static event AmmoChangeHandler _ammoChangeEvent;
     public AudioClip _bulletSoundFX;
+    public WeaponType _weaponType;
     public bool _pickup;
     public float _startScale;
 
     public SpriteRenderer _muzzleFlash;
     public int _muzzleFlashFrames;
 
-    private int _ammoLeft;
     private bool _setRecoil;
     private RecoilScript _recoil;
+
+    private static Dictionary<WeaponType, int> _weaponAmmo;
+    private static Dictionary<WeaponType, int> _weaponAmmoMax = new Dictionary<WeaponType, int>
+    {
+        { WeaponType.LIGHT, 384 },
+        { WeaponType.SPECIAL, 96 },
+        { WeaponType.HEAVY, 64 }
+    };
+
+    private static Dictionary<WeaponType, int> _weaponPickupAmount = new Dictionary<WeaponType, int>
+    {
+        { WeaponType.LIGHT, 48 },
+        { WeaponType.SPECIAL, 8 },
+        { WeaponType.HEAVY, 6 }
+    };
 
     protected override void Start()
     {
         base.Start();
 
         // start with some ammo
-        _ammoLeft = (int)Random.Range(_shooterStats._ammoCapacity * .1f, _shooterStats._ammoCapacity * .25f);
         _pickup = true;
 
         _recoil = GetComponent<RecoilScript>();
+
+        // set up weapon ammo
+        if (_weaponAmmo == null)
+        {
+            _weaponAmmo = new Dictionary<WeaponType, int>
+            {
+                { WeaponType.LIGHT, 96 },
+                { WeaponType.SPECIAL, 12 },
+                { WeaponType.HEAVY, 8 }
+            };
+        }
+
         OnAmmoChangeEvent();
     }
 
@@ -76,7 +104,7 @@ public class PlayerWeapon : Shooter, IItem
         // fire weapon
         if ((Input.GetMouseButtonDown(0) && _currentTimeBetweenShotFired >= _tapFireDelay || Input.GetMouseButton(0) && _currentTimeBetweenShotFired >= _fireDelay))
         {
-            if (_ammoLeft > 0)
+            if (_weaponAmmo[_weaponType] > 0)
             {
                 Fire(angle);
             }
@@ -91,7 +119,7 @@ public class PlayerWeapon : Shooter, IItem
         CameraFunctions._cameraFunctions.AddRecoil(transform.right);
         FireWeapon(angle);
         StartCoroutine("EmitMuzzleFlash");
-        _ammoLeft--;
+        _weaponAmmo[_weaponType]--;
         OnAmmoChangeEvent();
     }
 
@@ -129,17 +157,70 @@ public class PlayerWeapon : Shooter, IItem
     }
 
 
+    public static void AddAmmo(Dictionary<WeaponType, int> weaponTypes)
+    {
+        // find weapons you have that are not full
+
+        // it will go light, special, heavy
+        List<WeaponType> typesOfWeapons = new List<WeaponType> { WeaponType.LIGHT, WeaponType.SPECIAL, WeaponType.HEAVY };
+        Dictionary<WeaponType, float> selectionPercentages = new Dictionary<WeaponType, float>
+        {
+            { WeaponType.LIGHT, 0f },
+            { WeaponType.SPECIAL, 0f },
+            { WeaponType.HEAVY, 0f }
+        };
+
+        int totalAdded = 0;
+        foreach (WeaponType type in weaponTypes.Keys)
+        {
+            if (_weaponAmmo[type] < _weaponAmmoMax[type])
+            {
+                for (int i = 0; i < weaponTypes[type]; i++)
+                {
+                    selectionPercentages[type] += .5f;
+                    totalAdded++;
+                }
+            }
+        }
+
+        float toAdd = (1 - totalAdded * .5f) / 3f;
+        if (totalAdded < 2)
+        {
+            typesOfWeapons.ForEach(type => selectionPercentages[type] += toAdd);
+        }
+
+        float randomValue = Random.value;
+        float ammoChance = 0f;
+        foreach (WeaponType type in typesOfWeapons)
+        {
+            ammoChance += selectionPercentages[type];
+            if (randomValue < ammoChance)
+            {
+                _weaponAmmo[type] = Mathf.Min(_weaponAmmo[type] + _weaponPickupAmount[type], _weaponAmmoMax[type]);
+                break;
+            }
+        }
+
+        OnAmmoChangeEvent();
+    }
+
+    public static Dictionary<WeaponType, int> GetWeaponAmmoMax()
+    {
+        return _weaponAmmoMax;
+    }
+
+
     public static void AddAmmoChangeHandler(AmmoChangeHandler handler)
     {
         _ammoChangeEvent += handler;
     }
 
 
-    public void OnAmmoChangeEvent()
+    public static void OnAmmoChangeEvent()
     {
         if (_ammoChangeEvent != null)
         {
-            _ammoChangeEvent(_ammoLeft);
+            _ammoChangeEvent(_weaponAmmo);
         }
     }
 

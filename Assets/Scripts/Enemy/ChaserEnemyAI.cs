@@ -124,7 +124,7 @@ public class ChaserEnemyAI : MonoBehaviour, IDamager, IEnemy
         GetComponent<Animator>().enabled = false;
         _spriteRenderer.sprite = _deadSprite;
         GetComponent<BoxCollider2D>().enabled = false;
-        _deathHandler();
+        //_deathHandler();
     }
 
     private bool PlayerInView()

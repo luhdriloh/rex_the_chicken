@@ -1,34 +1,81 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void OnEnemyDeathHandler();
+public delegate void OnEnemyDeathHandler(Vector3 position, float itemSpawnPercent);
 
 public class LevelPlacer : MonoBehaviour
 {
+    public GameObject _miniAmmoBoxProto;
+    public GameObject _weaponBox;
+    public int _numberOfWeaponBoxes;
+    public float _miniAmmoBoxDisapearTime;
     public List<GameObject> _enemyPrototypes;
     public List<float> _enemySpawnPercentages;
 
     public GameObject _player;
     public int _numberOfEnemies;
 
+    private Inventory _playerInventory;
     private HashSet<int> _placesTaken;
+    private Stack<MiniAmmoBox> _miniAmmoBoxes;
     private int _enemiesAlive;
-
 
     private void Awake()
     {
         _placesTaken = new HashSet<int>();
         _enemiesAlive = _numberOfEnemies;
+        _playerInventory = _player.GetComponentInChildren<Inventory>();
+
+        _miniAmmoBoxes = new Stack<MiniAmmoBox>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject ammoBoxObject = Instantiate(_miniAmmoBoxProto, transform.position, Quaternion.identity);
+            ammoBoxObject.SetActive(false);
+
+            MiniAmmoBox miniAmmoBox = ammoBoxObject.GetComponent<MiniAmmoBox>();
+            miniAmmoBox._poolReturnDelegate = ReturnAmmoBox;
+            miniAmmoBox._pickupAction = _playerInventory.AmmoPickup;
+            _miniAmmoBoxes.Push(miniAmmoBox);
+        }
     }
 
 
-    private void DeathDelegate()
+    private void DeathDelegate(Vector3 position, float itemSpawnPercent)
     {
         _enemiesAlive--;
+        SpawnItem(position, itemSpawnPercent);
         if (_enemiesAlive <= 0)
         {
             Debug.Log("level done");
         }
+    }
+
+    private void SpawnItem(Vector3 position, float itemSpawnPercent)
+    {
+        // get weapon types
+
+        //Dictionary<WeaponType, int> types = _playerInventory.GetWeaponTypes();
+        //foreach (WeaponType type in types.Keys)
+        //{
+        //    Debug.Log(type + ": " + types[type]);
+        //}
+
+
+        // get weapon ammo percentage fills
+        if (Random.value < itemSpawnPercent)
+        {
+            MiniAmmoBox miniAmmoBox = _miniAmmoBoxes.Pop();
+            miniAmmoBox.SpawnAtPosition(position, _miniAmmoBoxDisapearTime);
+        }
+    }
+    
+
+    private void ReturnAmmoBox(GameObject miniAmmoBoxObject)
+    {
+        miniAmmoBoxObject.SetActive(false);
+        _miniAmmoBoxes.Push(miniAmmoBoxObject.GetComponent<MiniAmmoBox>());
     }
 
 
@@ -51,6 +98,7 @@ public class LevelPlacer : MonoBehaviour
                 {
                     taken = false;
                     newPosition = innerTileList[index];
+                    _placesTaken.Add(index);
                 }
             }
 
@@ -71,6 +119,13 @@ public class LevelPlacer : MonoBehaviour
             GameObject fodder = Instantiate(_enemyPrototypes[whichTypeOfEnemy]);
             fodder.GetComponent<IEnemy>().AddDeathDelegate(DeathDelegate);
             fodder.transform.position = new Vector3(newPosition.x, newPosition.y, -1);
+        }
+
+        for (int i = 0; i < _numberOfWeaponBoxes; i++)
+        {
+            int index = Random.Range(0, innerTileList.Count - 1);
+            Vector3 position = new Vector3(innerTileList[index].x, innerTileList[index].y, 0);
+            Instantiate(_weaponBox, position, Quaternion.identity);
         }
 
         // set gate and player positions

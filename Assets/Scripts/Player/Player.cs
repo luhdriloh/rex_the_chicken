@@ -67,10 +67,10 @@ public class Player : MonoBehaviour, IDamager
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && _rigidbody.velocity.magnitude >= 1)
         {
             _animator.SetTrigger("Roll");
-            StartCoroutine(StopRoll(.6f));
+            StartCoroutine(StopRoll(.3f));
             _roll = true;
         }
 

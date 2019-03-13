@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
 {
     public GameObject _noticeGameobject;
+    public GameObject _itemSpawn;
 
     public EnemyWeapon _enemyWeapon;
     public int _health;
@@ -20,6 +21,8 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
     public float _maxAimInterval;
     public float _minIdleRestTime;
     public float _maxIdleRestTime;
+
+    public float _itemSpawnPercentage;
 
     // notice for player
     private bool _setNoticeSprite;
@@ -44,7 +47,9 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _playerTransform = GameObject.FindWithTag("Player").transform;
+
+        GameObject player = GameObject.FindWithTag("Player");
+        _playerTransform = player.transform;
         _amountOfTimeToMoveFor = 0f;
         _shooting = true;
         _rightFacing = false;
@@ -190,6 +195,9 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
         _dead = true;
 
+        // ammo spawn percent
+
+
         // put down weapon
         _enemyWeapon.DropWeapon();
 
@@ -202,7 +210,7 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         GetComponent<CircleCollider2D>().enabled = false;
         _animator.SetBool("Die", true);
         StopMovement();
-        _deathHandler();
+        _deathHandler(transform.position, _itemSpawnPercentage);
     }
 
     public void AddDeathDelegate(OnEnemyDeathHandler deathHandler)

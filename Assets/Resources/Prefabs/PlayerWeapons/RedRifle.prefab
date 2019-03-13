@@ -261,6 +261,7 @@ MonoBehaviour:
   _shooterStats: {fileID: 11400000, guid: d1bc9c3022c6549dd8565917a380f996, type: 2}
   _projectilesToCreate: 8
   _bulletSoundFX: {fileID: 8300000, guid: d1435b89d6299497793bfef851c43563, type: 3}
+  _weaponType: 0
   _pickup: 0
   _startScale: 1
   _muzzleFlash: {fileID: 212319717160251842}

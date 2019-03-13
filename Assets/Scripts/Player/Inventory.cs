@@ -15,6 +15,38 @@ public class Inventory : MonoBehaviour
         _numberOfItems = size;
     }
 
+    public Dictionary<WeaponType, int> GetWeaponTypes()
+    {
+        Dictionary<WeaponType, int> weaponTypes = new Dictionary<WeaponType, int>();
+
+        for (int i = 0; i < _itemList.Count; i++)
+        {
+            if (_itemList[i] != null)
+            {
+                WeaponType type = _itemList[i].GetComponent<PlayerWeapon>()._weaponType;
+
+                if (weaponTypes.ContainsKey(type) == false)
+                {
+                    weaponTypes.Add(type, 1);
+                }
+                else
+                {
+                    weaponTypes[type]++;
+                }
+            }
+        }
+
+        return weaponTypes;
+    }
+
+
+    public void AmmoPickup()
+    {
+        PlayerWeapon.AddAmmo(GetWeaponTypes());
+    }
+
+
+
     private void Start()
     {
         _collider = GetComponentInParent<BoxCollider2D>();

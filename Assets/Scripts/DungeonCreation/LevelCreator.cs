@@ -20,7 +20,6 @@ public class LevelCreator : MonoBehaviour
 
     private DungeonCreationValues _dungeonCreationValues;
     private HashSet<Vector2Int> _dungeonTiles;
-    private List<Vector2Int> _mapRect;
     private LevelPlacer _placer;
 
     private Dictionary<Direction, float> _mapBiases;
@@ -107,32 +106,11 @@ public class LevelCreator : MonoBehaviour
                 for (int j = 0; j < _levelCreationData._tileSize; j++)
                 {
                     newPosition = new Vector2Int(i, j) + new Vector2Int(startPosition.x, startPosition.y);
-
-                    // set map bounds
-                    if (newPosition.x < lowerLeft.x)
-                    {
-                        lowerLeft.x = newPosition.x;
-                    }
-                    else if (newPosition.y < lowerLeft.y)
-                    {
-                        lowerLeft.y = newPosition.y;
-                    }
-
-                    if (newPosition.x > topRight.x)
-                    {
-                        topRight.x = newPosition.x;
-                    }
-                    else if (newPosition.y > topRight.y)
-                    {
-                        topRight.y = newPosition.y;
-                    }
-
                     scaledTiles.Add(newPosition);
                 }
             }
         }
 
-        _mapRect = new List<Vector2Int>() { lowerLeft, topRight };
         return scaledTiles;
     }
 

@@ -295,8 +295,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _noticeGameobject: {fileID: 1334075063802214}
+  _itemSpawn: {fileID: 0}
   _enemyWeapon: {fileID: 114618802587544532}
-  _health: 10
+  _health: 8
   _movementSpeed: 4
   _lengthOfLineOfSight: 4
   _howCloseCanPlayerBe: 1
@@ -307,6 +308,7 @@ MonoBehaviour:
   _maxAimInterval: 2
   _minIdleRestTime: 1
   _maxIdleRestTime: 3
+  _itemSpawnPercentage: 0.35
 --- !u!114 &114618802587544532
 MonoBehaviour:
   m_ObjectHideFlags: 1
