@@ -46,33 +46,33 @@ TextureImporter:
     21300082: world1_tileset-export_41
     21300084: world1_tileset-export_42
     21300086: world1_tileset-export_43
-    21300088: world1_tileset-export_44
+    21300088: Sand13
     21300090: world1_tileset-export_45
     21300092: world1_tileset-export_46
     21300094: world1_tileset-export_47
-    21300096: world1_tileset-export_48
-    21300098: world1_tileset-export_49
+    21300096: bush1
+    21300098: bush2
     21300100: world1_tileset-export_50
     21300102: world1_tileset-export_51
-    21300104: world1_tileset-export_52
-    21300106: world1_tileset-export_53
-    21300108: world1_tileset-export_54
+    21300104: Sand0
+    21300106: Sand1
+    21300108: Sand2
     21300110: world1_tileset-export_55
     21300112: world1_tileset-export_56
     21300114: world1_tileset-export_57
-    21300116: world1_tileset-export_58
-    21300118: world1_tileset-export_59
-    21300120: world1_tileset-export_60
-    21300122: world1_tileset-export_61
-    21300124: world1_tileset-export_62
+    21300116: Sand9
+    21300118: Sand10
+    21300120: Sand3
+    21300122: Sand4
+    21300124: Sand5
     21300126: world1_tileset-export_63
     21300128: world1_tileset-export_64
     21300130: world1_tileset-export_65
-    21300132: world1_tileset-export_66
-    21300134: world1_tileset-export_67
-    21300136: world1_tileset-export_68
-    21300138: world1_tileset-export_69
-    21300140: world1_tileset-export_70
+    21300132: Sand11
+    21300134: Sand12
+    21300136: Sand6
+    21300138: Sand7
+    21300140: Sand8
     21300142: world1_tileset-export_71
     21300144: world1_tileset-export_72
     21300146: world1_tileset-export_73
@@ -101,6 +101,10 @@ TextureImporter:
     21300192: world1_tileset-export_96
     21300194: world1_tileset-export_97
     21300196: world1_tileset-export_98
+    21300198: world1_tileset-export_44
+    21300200: world1_tileset-export_48
+    21300202: world1_tileset-export_49
+    21300204: world1_tileset-export_52
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -218,8 +222,7 @@ TextureImporter:
       outline:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
-        - {x: 6, y: -8}
-        - {x: 8, y: -6}
+        - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
@@ -248,8 +251,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -8, y: 8}
-        - {x: -8, y: -6}
-        - {x: -6, y: -8}
+        - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
@@ -401,8 +403,7 @@ TextureImporter:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 2}
-        - {x: 6, y: 8}
+        - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
@@ -429,8 +430,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 8}
-        - {x: -8, y: 6}
+      - - {x: -8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
@@ -620,13 +620,10 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 2, y: 1}
-        - {x: -3, y: -1}
-        - {x: -6, y: -5}
-        - {x: -6, y: -7}
-        - {x: -5, y: -8}
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 1}
+        - {x: 8, y: 8}
       physicsShape:
       - - {x: 4, y: -1}
         - {x: 1, y: -2}
@@ -653,11 +650,10 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 1}
+      - - {x: -8, y: 8}
         - {x: -8, y: -8}
-        - {x: 6, y: -8}
-        - {x: 6, y: -3}
-        - {x: 0, y: 1}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: -1}
         - {x: -8, y: -8}
@@ -804,11 +800,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 8}
-        - {x: -6, y: 3}
-        - {x: -5, y: -3}
-        - {x: -1, y: -4}
-        - {x: 8, y: -4}
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -3, y: 8}
@@ -837,11 +831,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -8, y: 8}
-        - {x: -8, y: -4}
-        - {x: 1, y: -4}
-        - {x: 4, y: -2}
-        - {x: 6, y: 3}
-        - {x: 6, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
         - {x: -8, y: -2}
@@ -888,11 +880,10 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 1}
-        - {x: -8, y: 0}
+      - - {x: -8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 1}
+        - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: -1}
         - {x: -8, y: -8}
@@ -1058,8 +1049,8 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -8, y: 8}
-        - {x: -8, y: -4}
-        - {x: 8, y: -4}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
@@ -1114,26 +1105,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_40
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ee38043f1e3c44ccbe571f39dca8730
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: world1_tileset-export_41
       rect:
         serializedVersion: 2
@@ -1165,8 +1136,8 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 8}
-        - {x: -6, y: -8}
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       physicsShape:
@@ -1195,8 +1166,8 @@ TextureImporter:
       outline:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
-        - {x: 6, y: -8}
-        - {x: 6, y: 8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
       physicsShape:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
@@ -1210,7 +1181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_44
+      name: Sand13
       rect:
         serializedVersion: 2
         x: 64
@@ -1290,13 +1261,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_48
+      name: bush1
       rect:
         serializedVersion: 2
         x: 0
         y: 96
         width: 16
-        height: 16
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1310,7 +1281,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_49
+      name: bush2
       rect:
         serializedVersion: 2
         x: 16
@@ -1370,7 +1341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_52
+      name: Sand0
       rect:
         serializedVersion: 2
         x: 64
@@ -1390,7 +1361,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_53
+      name: Sand1
       rect:
         serializedVersion: 2
         x: 80
@@ -1410,7 +1381,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_54
+      name: Sand2
       rect:
         serializedVersion: 2
         x: 96
@@ -1490,7 +1461,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_58
+      name: Sand9
       rect:
         serializedVersion: 2
         x: 32
@@ -1510,7 +1481,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_59
+      name: Sand10
       rect:
         serializedVersion: 2
         x: 48
@@ -1530,7 +1501,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_60
+      name: Sand3
       rect:
         serializedVersion: 2
         x: 64
@@ -1550,7 +1521,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_61
+      name: Sand4
       rect:
         serializedVersion: 2
         x: 80
@@ -1570,7 +1541,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_62
+      name: Sand5
       rect:
         serializedVersion: 2
         x: 96
@@ -1650,7 +1621,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_66
+      name: Sand11
       rect:
         serializedVersion: 2
         x: 32
@@ -1670,7 +1641,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_67
+      name: Sand12
       rect:
         serializedVersion: 2
         x: 48
@@ -1690,7 +1661,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_68
+      name: Sand6
       rect:
         serializedVersion: 2
         x: 64
@@ -1710,7 +1681,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_69
+      name: Sand7
       rect:
         serializedVersion: 2
         x: 80
@@ -1730,7 +1701,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_70
+      name: Sand8
       rect:
         serializedVersion: 2
         x: 96
@@ -2010,46 +1981,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_84
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a12d9294bf8c549abaabda7e4d11c50e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: world1_tileset-export_85
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f3c3a153df17b494aa94fe8039909c87
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: world1_tileset-export_86
       rect:
         serializedVersion: 2
@@ -2170,33 +2101,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: world1_tileset-export_92
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d251cc7d1b2a41edbadae62c9c87554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: world1_tileset-export_93
       rect:
         serializedVersion: 2
-        x: 112
-        y: 16
-        width: 16
-        height: 16
+        x: 100
+        y: 14
+        width: 24
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2305,6 +2216,106 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 60b26fad912dd41f7af5bde1eeaa04d2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world1_tileset-export_40
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 16
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea6517f94db04938b1431bc5bf83526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world1_tileset-export_44
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 14
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb8eba9634a5f4ce29eb0d19fbe5cef0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world1_tileset-export_48
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 9
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02c00584c9fb14634a623b76905b5b51
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world1_tileset-export_49
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 9
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8ac718a0a4f4cef8f716847b2de199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world1_tileset-export_52
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 6
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a2cb985910540d7805680a5f59f7f1
       vertices: []
       indices: 
       edges: []

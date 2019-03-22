@@ -10,13 +10,14 @@ using UnityEngine.Tilemaps;
 /// </summary>
 public class LevelCreator : MonoBehaviour
 {
+    public GameObject _bushProto;
+    public GameObject _treeProto;
     public LevelCreationData _levelCreationData;
     public Tilemap _tilemapToDrawFloor;
-    public Tilemap _tilemapForFill;
+    public Tilemap _tilemapToDrawBottom;
 
-    public TileBase _worldFill;
-    public TileBase _fillTile;
     public TileBase _fillRuleTile;
+    public TileBase _bottomTile;
 
     private DungeonCreationValues _dungeonCreationValues;
     private HashSet<Vector2Int> _dungeonTiles;
@@ -28,10 +29,10 @@ public class LevelCreator : MonoBehaviour
     {
         _mapBiases = new Dictionary<Direction, float>
         {
-            { Direction.NORTH, .2f },
-            { Direction.EAST, .4f },
-            { Direction.SOUTH, .2f },
-            { Direction.WEST, .2f }
+            { Direction.NORTH, .25f },
+            { Direction.EAST, .25f },
+            { Direction.SOUTH, .25f },
+            { Direction.WEST, .25f }
         };
 
         _dungeonCreationValues = DrunkWalkerDungeonCreator.CreateDungeon(_levelCreationData._numberOfWalkers, _levelCreationData._numberOfIterations, _levelCreationData._overlapAllowed, _mapBiases);
@@ -42,7 +43,7 @@ public class LevelCreator : MonoBehaviour
             _dungeonTiles = ReturnListOfScaledTiles(_dungeonTiles);
         }
 
-        List<Vector2Int> edgeTiles = ReturnEdgeTiles(_dungeonTiles);
+        HashSet<Vector2Int> edgeTiles = ReturnEdgeTiles(_dungeonTiles);
         HashSet<Vector2Int> fillTiles = new HashSet<Vector2Int>(_dungeonTiles.Except(edgeTiles));
 
         _placer = GetComponent<LevelPlacer>();
@@ -54,8 +55,8 @@ public class LevelCreator : MonoBehaviour
         // flowers / mushrooms etc
 
         // dont need the one below, just change the physics shape of the sprite
-        DrawDungeonTiles(edgeTiles, _tilemapForFill, _fillTile);
-        DrawDungeonTiles(_dungeonTiles, _tilemapToDrawFloor, _fillRuleTile);
+        //DrawDungeonTiles(edgeTiles, _tilemapForFill, _fillTile);
+        DrawDungeonTiles(_dungeonTiles.ToList(), _tilemapToDrawFloor, edgeTiles);
     }
 
 
@@ -80,13 +81,62 @@ public class LevelCreator : MonoBehaviour
     }
 
 
-    private void DrawDungeonTiles(IEnumerable<Vector2Int> tiles, Tilemap tilemapToUse, TileBase tilesToUse)
+    private void DrawDungeonTiles(List<Vector2Int> tiles, Tilemap tilemapToUse, HashSet<Vector2Int> edges)
     {
-        // if an edge tile make the z axis higher
+        // get some random tiles and create squares of different sizes on them
+        // a percent of the amount of tiles that we have 5%
+        int maxSideLength = 5;
+        HashSet<Vector2Int> bushes = CreateSquares(tiles, maxSideLength);
+
         foreach (Vector2Int tileLocation in tiles)
         {
-            tilemapToUse.SetTile(new Vector3Int(tileLocation.x, tileLocation.y, 0), tilesToUse);
+            tilemapToUse.SetTile(new Vector3Int(tileLocation.x, tileLocation.y, 0), _fillRuleTile);
+
+            if (bushes.Contains(tileLocation) && edges.Contains(tileLocation) == false)
+            {
+                float xmin = edges.Contains(tileLocation + Vector2Int.left) ? 0f : -.5f;
+                float xmax = edges.Contains(tileLocation + Vector2Int.right) ? 0f : .5f;
+                Instantiate(_bushProto, new Vector3(tileLocation.x + Random.Range(xmin, xmax), tileLocation.y + Random.Range(0, .7f), 0), Quaternion.identity);
+            }
+
+            if (edges.Contains(tileLocation) == true
+                && edges.Contains(tileLocation + Vector2Int.left)
+                && edges.Contains(tileLocation + Vector2Int.right)
+                && _dungeonTiles.Contains(tileLocation + Vector2Int.down) == false)
+            {
+                _tilemapToDrawBottom.SetTile(new Vector3Int(tileLocation.x, tileLocation.y, 0), _bottomTile);
+            }
+
+            if (edges.Contains(tileLocation) && .01f >= Random.value)
+            {
+                Instantiate(_treeProto, new Vector3(tileLocation.x, tileLocation.y + Random.Range(1f, 2f), -4f), Quaternion.identity);
+            }
         }
+    }
+
+    private HashSet<Vector2Int> CreateSquares(List<Vector2Int> tiles, int maxSideLength)
+    {
+        HashSet<Vector2Int> squareTiles = new HashSet<Vector2Int>();
+
+        int numberOfTilesToMakeIntoSquares = (int)(tiles.Count * .01f);
+        for (int i = 0; i < numberOfTilesToMakeIntoSquares; i++)
+        {
+            int width = Random.Range(maxSideLength / 3, maxSideLength);
+            int length = Random.Range(maxSideLength / 3, maxSideLength);
+
+            // get a random tile and start to create the square there
+            Vector2Int startTile = tiles[Random.Range(0, tiles.Count)];
+
+            for (int row = 0; row < length; row++)
+            {
+                for (int column = 0; column < width; column++)
+                {
+                    squareTiles.Add(new Vector2Int(startTile.x + column, startTile.y + row));
+                }
+            }
+        }
+
+        return squareTiles;
     }
 
     
@@ -114,9 +164,9 @@ public class LevelCreator : MonoBehaviour
         return scaledTiles;
     }
 
-    private List<Vector2Int> ReturnEdgeTiles(HashSet<Vector2Int> dungeonPositions)
+    private HashSet<Vector2Int> ReturnEdgeTiles(HashSet<Vector2Int> dungeonPositions)
     {
-        List<Vector2Int> edgeTiles = new List<Vector2Int>();
+        HashSet<Vector2Int> edgeTiles = new HashSet<Vector2Int>();
 
         foreach (Vector2Int tilePosition in dungeonPositions)
         {

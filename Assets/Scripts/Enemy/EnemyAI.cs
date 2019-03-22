@@ -3,7 +3,7 @@ using System.Collections;
 
 using UnityEngine;
 
-public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
+public class EnemyAI : MonoBehaviour, IDamager, IEnemy
 {
     public GameObject _noticeGameobject;
     public GameObject _itemSpawn;
@@ -98,6 +98,10 @@ public class EnemyFodderAI : MonoBehaviour, IDamager, IEnemy
         //   run away
         //   aim at player
         //   aim in player vicinity
+
+        // for trees and shit
+        float yPos = transform.position.y;
+        transform.position = new Vector3(transform.position.x, transform.position.y, -3f + (yPos * .01f));
     }
 
     private IEnumerator IdleMovement()

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public delegate void HealthChangeHandler(int newHealthValue, int maxHealthValue);
 
@@ -68,7 +67,7 @@ public class Player : MonoBehaviour, IDamager
         }
 
         // roll
-        if (Input.GetKeyDown(KeyCode.M) && _rigidbody.velocity.magnitude >= 1)
+        if (Input.GetMouseButtonDown(1) && _rigidbody.velocity.magnitude >= 1)
         {
             _animator.SetTrigger("Roll");
             StartCoroutine(StopRoll(.3f));
@@ -93,6 +92,10 @@ public class Player : MonoBehaviour, IDamager
             _animator.SetBool("Moving", false);
             _walking = false;
         }
+
+        // for trees and shit
+        float yPos = transform.position.y;
+        transform.position = new Vector3(transform.position.x, transform.position.y, -3f + (yPos * .01f));
     }
 
 

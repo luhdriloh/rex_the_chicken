@@ -32,14 +32,14 @@ public class PlayerWeapon : Shooter, IItem
     private static Dictionary<WeaponType, int> _weaponAmmo;
     private static Dictionary<WeaponType, int> _weaponAmmoMax = new Dictionary<WeaponType, int>
     {
-        { WeaponType.LIGHT, 384 },
+        { WeaponType.LIGHT, 226 },
         { WeaponType.SPECIAL, 96 },
         { WeaponType.HEAVY, 64 }
     };
 
     private static Dictionary<WeaponType, int> _weaponPickupAmount = new Dictionary<WeaponType, int>
     {
-        { WeaponType.LIGHT, 48 },
+        { WeaponType.LIGHT, 36 },
         { WeaponType.SPECIAL, 8 },
         { WeaponType.HEAVY, 6 }
     };
@@ -58,7 +58,7 @@ public class PlayerWeapon : Shooter, IItem
         {
             _weaponAmmo = new Dictionary<WeaponType, int>
             {
-                { WeaponType.LIGHT, 96 },
+                { WeaponType.LIGHT, 86 },
                 { WeaponType.SPECIAL, 12 },
                 { WeaponType.HEAVY, 8 }
             };

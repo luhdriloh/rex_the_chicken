@@ -102,7 +102,7 @@ public class Shooter : MonoBehaviour
 
         for (int i = 1; i < amountToAdd; i++)
         {
-            newGameObject = Instantiate(_weaponProjectile, transform.position, Quaternion.identity);
+            newGameObject = Instantiate(_weaponProjectile, transform.position + Vector3.back * 3, Quaternion.identity);
             newGameObject.layer = layerToSet;
             projectile = newGameObject.GetComponent<LinearProjectile>();
             SetProjectileUp(projectile, halfStartSpeed);

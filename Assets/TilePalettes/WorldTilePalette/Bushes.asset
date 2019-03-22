@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535f8e525ff367c4ba67961e201a05ed, type: 3}
-  m_Name: WorldFillTiles
+  m_Name: Bushes
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -34,5 +34,10 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   m_Sprites:
-  - {fileID: 21300064, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}
-  - {fileID: 21300066, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}
+  - {fileID: 21300096, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}
+  - {fileID: 21300080, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}
+  - {fileID: 21300198, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}
+  - {fileID: 21300200, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}
+  - {fileID: 21300202, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}
+  - {fileID: 21300204, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}
+  - {fileID: 21300186, guid: 6d9250bd2d11b4ccdaef1ba8da91f797, type: 3}

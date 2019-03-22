@@ -309,6 +309,20 @@ MonoBehaviour:
   _minIdleRestTime: 1.5
   _maxIdleRestTime: 4
   _itemSpawnPercentage: 0.15
+  _setNoticeSprite: 0
+  _noticeTime: 0
+  _bulletsToFire: 0
+  _spriteRenderer: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _animator: {fileID: 0}
+  _playerTransform: {fileID: 0}
+  _directionToMoveIn: {x: 0, y: 0, z: 0}
+  _directionToFire: {x: 0, y: 0}
+  _amountOfTimeToMoveFor: 0
+  _shooting: 0
+  _rightFacing: 0
+  _routinesStarted: 0
+  _dead: 0
 --- !u!114 &114898889898888266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,7 +348,7 @@ MonoBehaviour:
   _weaponGenerationPercent: 0.3
   _setNotice: 0
   _noticeTime: 0
-  _bulletsToFire: 3
+  _bulletsToFire: 1
 --- !u!212 &212114297845074598
 SpriteRenderer:
   m_ObjectHideFlags: 1
